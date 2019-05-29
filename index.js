@@ -20,7 +20,7 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const router = require('./routes/index')
-app.use('/',router)
+app.use(router())
 
 mongoose.connect(mongo, { useNewUrlParser: true }).then(() => {
     app.listen(port, () => {

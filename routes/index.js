@@ -1,10 +1,14 @@
-const pagesController = require('../controllers/pages')
+const pagesRoute = require('./pages')
+const seriesRoute = require('./series')
 
-const express = require('express')
-const router = express.Router()
+const init = () => {
+    const express = require('express')
+    const router = express.Router()
 
-router.get('/', pagesController.index)
-router.get('/sobre', pagesController.sobre)
-router.get('/series', pagesController.series)
+    router.use('/', pagesRoute)
+    router.use('/series', seriesRoute)
 
-module.exports = router
+    return router
+}
+
+module.exports = init
