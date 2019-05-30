@@ -11,12 +11,25 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <h2>Sobre</h2>
-                <p class="lead">Uma headline aqui</p>
-                <ul>
+                <p class="lead">Todas as séries cadastradas<a href="/series/nova" class="btn btn-info">Nova Série</a></p>
+                <table class="table table-hover">
                     <% series.forEach(serie=>{%>
-                        <li><%= serie.name %> <%= serie.status %></li>
+                        <tr>
+                            <td><%= serie.name %></td>
+                            <td>
+                                <% if(serie.status == 'to-watch') { %>
+                                    <span class="badge badge-secondary">Para assistir</span>
+                                <% } else if(serie.status == 'watching') { %>
+                                    <span class="badge badge-secondary">Assistindo</span>
+                                <% } else if(serie.status == 'watched') { %>
+                                    <span class="badge badge-secondary">Assistido</span>
+                                <% } %>
+                            </td>
+                            <td><a class="btn btn-info" href="/series/editar/<%= serie.id %>">Editar</a></td>
+                            <td><a class="btn btn-danger" href="/series/excluir/<%= serie.id %>">Excluir</a></td>
+                        </tr>
                     <% })%>
-                </ul>
+                </table>
             </div>
         </div>
     </div>
