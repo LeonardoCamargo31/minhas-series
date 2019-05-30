@@ -1,0 +1,19 @@
+section {
+    padding: 75px 0;
+}
+
+.nova-serie{
+    margin-left: 10px;
+}
+
+.table td{
+    line-height: 38px;
+}
+
+.comments{
+    padding: 30px 0px;
+}
+.comments .card{
+    margin: 10px 0px;
+    padding: 5px;
+}

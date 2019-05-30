@@ -19,4 +19,8 @@ router.get('/excluir/:id', seriesController.excluir.bind(null,models))
 router.get('/editar/:id', seriesController.editarForm.bind(null,models))
 router.post('/editar/:id', seriesController.editarProcess.bind(null,models))
 
+router.get('/info/:id', seriesController.infoForm.bind(null,models))
+router.post('/info/:id', seriesController.infoProcess.bind(null,models))
+
+
 module.exports = router

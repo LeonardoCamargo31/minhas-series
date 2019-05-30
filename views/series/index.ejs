@@ -10,12 +10,17 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
-                <h2>Sobre</h2>
-                <p class="lead">Todas as séries cadastradas<a href="/series/nova" class="btn btn-info">Nova Série</a></p>
+                <h2>Séries</h2>
+                <p class="lead">Todas as séries cadastradas<a href="/nova" class="btn btn-info nova-serie">Nova Série</a></p>
                 <table class="table table-hover">
+                    <tr>
+                        <th>Nome da série</th>
+                        <th>Situação</th>
+                        <th>Ação</th>
+                    </tr>
                     <% series.forEach(serie=>{%>
                         <tr>
-                            <td><%= serie.name %></td>
+                            <td><a href="/info/<%= serie.id %>"><%= serie.name %></a></td>
                             <td>
                                 <% if(serie.status == 'to-watch') { %>
                                     <span class="badge badge-secondary">Para assistir</span>
@@ -25,8 +30,8 @@
                                     <span class="badge badge-secondary">Assistido</span>
                                 <% } %>
                             </td>
-                            <td><a class="btn btn-info" href="/series/editar/<%= serie.id %>">Editar</a></td>
-                            <td><a class="btn btn-danger" href="/series/excluir/<%= serie.id %>">Excluir</a></td>
+                            <td> <div class="btn-group" role="group" aria-label="First group"><a class="btn btn-info" href="/editar/<%= serie.id %>">Editar</a>
+                            <a class="btn btn-danger" href="/excluir/<%= serie.id %>">Excluir</a></div></td>
                         </tr>
                     <% })%>
                 </table>

@@ -1,0 +1,58 @@
+<%- include ../partials/header %>
+
+<header class="bg-info text-white">
+    <div class="container text-center">
+        <h1><img src="/images/logo.png" alt="Minhas Séries" /></h1>
+        <p class="lead">Gerencie suas séries com Express + Mongo + NodeJS</p>
+    </div>
+</header>
+
+<section id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Informações da série</li>
+                    </ol>
+                </nav>
+                <h2>Informações da série
+                    <%= serie.name %>
+                </h2>
+                <div class="form-group">
+                    <label>Situação :
+                        <% if(serie.status == 'to-watch') { %>
+                        <span class="badge badge-secondary">Para
+                            assistir</span>
+                        <% } else if(serie.status == 'watching') {
+                                        %>
+                        <span class="badge badge-secondary">Assistindo</span>
+                        <% } else if(serie.status == 'watched')
+                                            { %>
+                        <span class="badge badge-secondary">Assistido</span>
+                        <% } %>
+                    </label>
+                </div>
+                <form action="/info/<%= serie.id %>" method="POST">
+                    <div class="form-group">
+                        <label>Fazer novo comentário:</label>
+                        <textarea class="form-control" name="comentario"></textarea>
+                    </div>
+                    <button type="submit" class="btn
+                                                btn-info">Adicionar
+                        comentário</button>
+                </form>
+                <% if(serie.comments.length>0){ %>
+                    <div class="comments">
+                        <h4>Comentários</h4>
+                        <% serie.comments.forEach(comentario=>{ %>
+                            <div class="card"><%= comentario %></div>
+                        <% }) %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</section>
+<%- include ../partials/footer %>

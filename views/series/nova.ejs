@@ -1,10 +1,29 @@
 <%- include ../partials/header %>
+
+<header class="bg-info text-white">
+    <div class="container text-center">
+        <h1><img src="/images/logo.png" alt="Minhas Séries" /></h1>
+        <p class="lead">Gerencie suas séries com Express + Mongo + NodeJS</p>
+    </div>
+</header>
+
 <section id="about">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Nova série</li>
+                    </ol>
+                </nav>
                 <h2>Nova série</h2>
-                <form action="/series/nova" method="POST">
+                <% if(errors && errors.indexOf('name')>=0){ %>
+                <div class="alert alert-danger" role="alert">
+                    Por favor, informar o nome da série!
+                </div>
+                <% } %>
+                <form action="/nova" method="POST">
                     <div class="form-group">
                         <label>Nome da série</label>
                         <input type="text" class="form-control" name="name" placeholder="Informe o nome da série" />
