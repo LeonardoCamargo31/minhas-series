@@ -1,7 +1,30 @@
-const index = async ({ Serie }, req, res) => {
-    const result = await Serie.find({})
-    res.render('series/index', { series: result })
+const pagination = async (model, conditions, params) => {
+    const total = await model.count(conditions)
+    const pageSize = parseInt(params.pageSize) || 20
+    const currentPage = parseInt(params.page) || 0
+
+    const pagination = {
+        currentPage: currentPage,
+        pageSize: pageSize,
+        pages: parseInt(total/pageSize)
+    }
+
+    const results = await model
+        .find(conditions)
+        .skip(currentPage*pageSize)//quantos registros quero pular
+        .limit(pageSize)//limite de registro
+
+    return {
+        data:results,
+        pagination
+    }
 }
+
+const index = async ({ Serie }, req, res) => {
+    const results = await pagination(Serie, {}, req.query)
+    res.render('series/index', { results })
+}
+
 
 const novaForm = (req, res) => {
     res.render('series/nova', { errors: null })
